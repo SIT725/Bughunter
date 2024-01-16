@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
 import { Route } from "react-router-dom";
-import { AuthContext } from "./Auth";
-import { auth, firestore } from "../firebase/firebase";
+import { AuthContext } from "../controller/Auth";
+import { auth } from "../controller/firebase"; 
 
 const Dashboard = () => {
   const { currentUser } = useContext(AuthContext);
   if (!currentUser) {
-    return <Route to="/login" />;
+    return <Route to="/signup" />;
   }
   return (
     <div>

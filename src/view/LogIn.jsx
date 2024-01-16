@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Navigate } from "react-router-dom";
-import { AuthContext } from "./Auth";
-import { auth } from "../firebase/firebase";
+import { AuthContext } from "../controller/Auth";
+import { auth } from "../controller/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 
 const LogIn = () => {
@@ -16,7 +16,7 @@ const LogIn = () => {
   };
   const { currentUser } = useContext(AuthContext);
   if (currentUser) {
-    return <Navigate to="/dashboard" />;
+    return <Navigate to="/" />;
   }
   return (
     <>

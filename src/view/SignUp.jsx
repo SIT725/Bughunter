@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Navigate } from "react-router-dom";
-import { auth } from "../firebase/firebase";
+import { auth } from "../controller/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
 const SignUp = () => {
@@ -19,7 +19,7 @@ const SignUp = () => {
     }
   };
   if (currentUser) {
-    return <Navigate to="/dashboard" />;
+    return <Navigate to="/" />;
   }
   return (
     <>
