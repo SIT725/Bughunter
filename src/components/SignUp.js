@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Navigate } from "react-router-dom";
-import { auth } from "../firebase/firebase";
+import { auth } from "../firebase/firebase.js";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
 const SignUp = () => {
@@ -23,14 +23,38 @@ const SignUp = () => {
   }
   return (
     <>
-      <h1>Sign Up</h1>
-      <form onSubmit={handleSubmit}>
-        <label for="email">Email</label>
-        <input type="email" name="email" placeholder="Email" />
-        <label for="password">Password</label>
-        <input type="password" name="password" placeholder="Password" />
-        <button type="submit">Submit</button>
-      </form>
+      <div className="auth-wrapper">
+        <div className="auth-inner">
+          <form onSubmit={handleSubmit}>
+            <h2>Sign Up</h2>
+            <div className="mb-3">
+              <label for="email">Email address</label>
+              <input
+                type="email"
+                name="email"
+                className="form-control"
+                placeholder="Enter email"
+              />
+            </div>
+
+            <div className="mb-3">
+              <label for="password">Password</label>
+              <input
+                type="password"
+                name="password"
+                className="form-control"
+                placeholder="Enter password"
+              />
+            </div>
+
+            <div className="d-grid">
+              <button type="submit" className="btn btn-primary">
+                Sign Up
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
     </>
   );
 };
