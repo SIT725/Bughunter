@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import Modal from "../BugForm/Modal.js";
+import BugForm from "../BugForm/BugForm.js";
 import "./BugTable.css";
 
 const fetchBugs = async () => {
@@ -20,12 +22,11 @@ const fetchBugs = async () => {
 const BugTable = () => {
   const [bugs, setBugs] = useState([]);
   const [selectedBug, setSelectedBug] = useState(null);
+  const [isUpdateModalOpen, setUpdateModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       const bugsData = await fetchBugs();
-
-      console.log("Bugs State:", bugsData);
       setBugs(bugsData);
     };
 
@@ -38,6 +39,44 @@ const BugTable = () => {
 
   const handleCloseDetails = () => {
     setSelectedBug(null);
+  };
+
+  const handleDelete = async (bugId) => {
+    try {
+      const response = await fetch(
+        `http://localhost:5000/api/deleteBug/${bugId}`,
+        {
+          method: "DELETE",
+        }
+      );
+
+      if (response.ok) {
+        // Update the bugs state after successful deletion
+        const updatedBugs = bugs.filter((bug) => bug.id !== bugId);
+        setBugs(updatedBugs);
+        setSelectedBug(null); // Close bug details after deletion
+        console.log("Bug deleted successfully");
+      } else {
+        console.error("Error deleting bug:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error deleting bug:", error);
+    }
+  };
+
+  const handleUpdate = (bug) => {
+    setSelectedBug(bug);
+    setUpdateModalOpen(true);
+  };
+
+  const onUpdateSubmit = (updatedBug) => {
+    // Update the bugs state after successful update
+    setBugs((prevBugs) =>
+      prevBugs.map((bug) => (bug.id === updatedBug.id ? updatedBug : bug))
+    );
+    setSelectedBug(null);
+    setUpdateModalOpen(false);
+    console.log("Bug updated successfully:", updatedBug);
   };
 
   return (
@@ -133,9 +172,20 @@ const BugTable = () => {
               timeZone: "Australia/Sydney",
             })}`}</p>
           )}
+          <button onClick={() => handleUpdate(selectedBug)}>Update</button>
+          <button onClick={() => handleDelete(selectedBug.id)}>Delete</button>
           <button onClick={handleCloseDetails}>Close</button>
         </div>
       )}
+
+      {/* Update Modal */}
+      <Modal onClose={() => setUpdateModalOpen(false)} show={isUpdateModalOpen}>
+        <BugForm
+          onUpdateSubmit={onUpdateSubmit}
+          selectedBug={selectedBug}
+          onClose={() => setUpdateModalOpen(false)}
+        />
+      </Modal>
     </div>
   );
 };
