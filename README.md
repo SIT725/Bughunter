@@ -2,7 +2,7 @@
 
 BUG Hunter is a user-friendly web application designed to efficiently track and manage bugs in your applications under test.. It makes it possible to track defects centrally, combining all the necessary data into a single system for simple monitoring and fixing. By making the debugging process more transparent to users and stakeholders, this also removes unwanted externalities. 
 
-#Features:
+# Features:
 
 The user is able to create an account for themselves with the required details
 
@@ -41,7 +41,7 @@ npm start
 ```
 
 ### Backend:
-Update Firebase/firebase.js file with your firebase configurations.
+
 Head over to the bug-tracker-server(/Bughunter/src/bug-tracker-server) directory. 
 
 ```
