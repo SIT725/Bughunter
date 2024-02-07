@@ -11,10 +11,7 @@ const Home = () => {
     <div style={{ display: "flex", flexDirection: "column", height: "500vh" }}>
       {/* Top blank row */}
       <div style={{ background: "white", height: "calc(50vh - 60px)" }} />
-      // <div style={{ textAlign: "center" }}>
-      //   <img src={logo} alt="Logo" style={{ width: "100px", height: "100px" }} />
-      //   <h1>Bughunter</h1>
-      // </div>
+      
 
       {/* Main content row with blank columns */}
       <div style={{ display: "flex", height: "calc(50vh - 60px)" }}>
