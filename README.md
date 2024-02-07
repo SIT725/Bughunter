@@ -1,3 +1,23 @@
+# BUG Hunter: Your Powerful Bug Tracking Solution
+
+BUG Hunter is a user-friendly web application designed to efficiently track and manage bugs in your applications under test.. It makes it possible to track defects centrally, combining all the necessary data into a single system for simple monitoring and fixing. By making the debugging process more transparent to users and stakeholders, this also removes unwanted externalities. 
+
+#Features:
+
+The user is able to create an account for themselves with the required details
+
+Users can logged into a dashboard and get all bugs reported by the current status
+
+It provides the features to Report/create New Bugs
+
+It provides the features to Update/Delete opened Bugs
+
+
+Front End : javascript
+Back End : Firebase
+
+# BUG Hunter: Configuration
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -10,6 +30,27 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Get all the necessary dependencies based on the information in package.json and package-lock.json.
 
 `npm install` OR `yarn install`
+
+### Frontend:
+
+Navigate to the Bughunter directory. Run the following commands in your terminal:
+
+```
+npm install
+npm start
+```
+
+### Backend:
+Update Firebase/firebase.js file with your firebase configurations.
+Head over to the bug-tracker-server(/Bughunter/src/bug-tracker-server) directory. 
+
+```
+node server.js
+```
+
+### Accessing BUG Hunter:
+
+Once everything is running, open http://localhost:3000/ in your browser. This launches the BUG Hunter user interface where you can track and manage bugs.
 
 ## Available Scripts
 
