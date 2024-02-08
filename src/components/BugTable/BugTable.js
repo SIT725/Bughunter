@@ -23,6 +23,8 @@ const BugTable = () => {
   const [bugs, setBugs] = useState([]);
   const [selectedBug, setSelectedBug] = useState(null);
   const [isUpdateModalOpen, setUpdateModalOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [suggestions, setSuggestions] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -79,10 +81,43 @@ const BugTable = () => {
     console.log("Bug updated successfully:", updatedBug);
   };
 
+  const handleSearch = (event) => {
+    const term = event.target.value;
+    setSearchTerm(term);
+
+    // Filter bugs based on the search term to generate suggestions
+    const results = bugs.filter(bug =>
+      bug.title.toLowerCase().includes(term.toLowerCase())
+    );
+    setSuggestions(results);
+  };
+
   return (
     <div>
       <h3>Bug Table</h3>
-      <div className="bug-table">
+
+      <div>
+        <h2>Search Bugs</h2>
+        <input
+          type="text"
+          placeholder="Search bugs..."
+          value={searchTerm}
+          onChange={handleSearch}
+        />
+          {/* Display suggestions */}
+          {suggestions.map(bug => (
+            <div
+            key={bug.id}
+            className="bug-box"
+            onClick={() => handleBugClick(bug)}
+          >
+            <p>{`Bug ${bug.id}`}</p>
+            <p>{bug.title}</p>
+          </div>
+            ))}
+      </div>
+
+      <div className="bug-table"> 
         <div className="bug-column open-column">
           <div className="bug-column-header">Open</div>
           {bugs
